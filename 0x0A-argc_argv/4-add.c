@@ -1,58 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-/**
- * isInteger - checks if s is an integer
- * @s: string to check
- * Return: 0 or 1
- */
-
-int isInteger(const char *s)
-{
-int i = 0;
-while (s[i] != '\0')
-{
-	if (s[i] < '0' || s[i] > '9')
-		return (0);
-	i++;
-}
-return (1);
-}
+#include <ctype.h>
 
 /**
- * main - adds positive numbers
- * @argc: int
- * @argv: list
- * Return: 0
+ * main - arguments to main
+ * @argc: first arg is a count
+ * @argv: second arg is a pointer to char
+ *
+ * Return: Always 0
  */
-
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-int i = 0, coinUsed = 0, coin = 0;
-int coins[] = {25, 10, 5, 2, 1};
+    int i, j;
+    int add = 0;
 
-if (argc != 2)
-{
-	printf("Error\n");
-	return (1);
-}
-if (isInteger(argv[1]))
-{
-	i = atoi(argv[1]);
-	while (i > 0 && coin <= 4)
-	{
-		if (i >= coins[coin])
-		{
-			i -= coins[coin];
-			coinUsed++;
-		}
-		else
-		{
-			coin++;
-		}
-	}
-}
+    i = 1;
+    while (argv[i])
+    {
+        j = 1;
+        while (argv[i][j])
+        {
+            if ((isdigit(argv[i][j]) == 0))
+            {
+                printf("error\n");
+                return (1);
+            }
+            j++;
+        }
+        i++;
+    }
+    i = 1;
 
-printf("%i\n", coinUsed);
+    while (argv[i] != argv[argc])
+    {
+        add += atoi(argv[i]);
+        i++;
+    }
 
-return (0);
+    printf("%d\n", add);
+    return (0);
 }
