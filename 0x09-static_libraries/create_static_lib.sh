@@ -1,6 +1,4 @@
-#! /bin/bash
-for f in .c;
-do 
-	gcc -c *.c
-done
-ar rs liball.a *.o
+#!/bin/bash
+gcc -c *.c
+ar -rc liball.a *.o
+ranlib liball.a
