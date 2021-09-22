@@ -1,46 +1,38 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 /**
-* *argstostr - concatenatea the arguments of the program
-*@ac: argument counter
-*@av: argument vector
-*Return: 0 (success)
+*argstostr - function start here
+*@ac: int
+*@av: pointer
+*Return: char
 */
+
 char *argstostr(int ac, char **av)
 {
-	int i, j, c;
-	char *str, *beg;
+	int i, k = 0, l = 0, n;
+	char *ptr;
 
 	if (ac == 0 || av == NULL)
-		return (NULL);
-
+	return (NULL);
 	for (i = 0; i < ac; i++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-		{
-			c++;
-		}
-		c++;
+		int j;
+
+		for (j = 0; av[i][j] != '\0'; j++, k++)
+		;
 	}
-
-	c++;
-	str = malloc(c * sizeof(char));
-
-	beg = str;
-
-	if (str == NULL)
-		return (NULL);
-
-	for (i = 0; i < ac; i++)
+	ptr = (char *)malloc(k + (ac + 1));
+	for (n = 0; n < ac; n++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		int z;
+
+		for (z = 0; av[n][z] != '\0'; z++, l++)
 		{
-			*str = av[i][j];
-			str++;
+			ptr[l] = av[n][z];
 		}
-		*str = '\n';
-		str++;
+		ptr[l] = '\n';
+		l++;
 	}
-	return (beg);
+	return (ptr);
 }
