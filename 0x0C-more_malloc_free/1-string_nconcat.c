@@ -1,57 +1,52 @@
 #include "main.h"
-#include <stdlib.h>
-/**
- *_strlen- a function that return the length of length
- *@str: char to check
- *@col: int which string
- *@n: number of string to return
- *Return: number of string
- */
-unsigned int _strlen(char *str, unsigned int col, unsigned int n)
-{
-	unsigned int i = 0;
 
-	if (str != NULL)
-	{
-		while (str[i])
-		i++;
-		if (col == 2 && n > i)
-		return (i);
-		else if (col == 2 && n < i)
-		return (n);
-	}
-	else if (str == NULL)
-	return (1);
-	return (i);
-}
 /**
- * string_nconcat- a function that concatenates two strings
- *@s1: char to concat
- *@s2: char to concat
- *@n: s2 length to use to concat
- *Return: pointer to new created space
+ * _strlen - find length of a string
+ * @s: string
+ * Return: int
+ */
+
+unsigned int _strlen(char *s)
+{
+unsigned int size = 0;
+for (; s[size] != '\0'; size++)
+;
+return (size);
+}
+
+/**
+ * *string_nconcat - concatenates two strings
+ * @s1: string 1
+ * @s2: string 2
+ * @n: first bytes of s2 to be used
+ * Return: pointer or NULL
  */
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int z = 0, i = 0;
-	char *ptr = malloc(_strlen(s1, 1, n) + _strlen(s2, 2, n) + 1);
+unsigned int i, j;
+char *m;
 
-	if (ptr == NULL)
-	{
-		return (NULL);
-	}
-	for (; z < _strlen(s1, 1, n); z++)
-	{
-		ptr[z] = s1[z];
-	}
-	for (; i < _strlen(s2, 2, n); i++)
-	{
-		if (s2 != NULL)
-		ptr[z + i] = s2[i];
-		else
-		ptr[z + i] = '\0';
-	}
-	ptr[z + i] = '\0';
-	return (ptr);
+if (s1 == NULL)
+	s1 = "";
+if (s2 == NULL)
+	s2 = "";
+
+if (n < _strlen(s2))
+	m = malloc(_strlen(s1) + n * sizeof(char) + 1);
+else
+	m = malloc(_strlen(s1) + _strlen(s2) + 1);
+
+if (m == 0)
+	return (NULL);
+
+for (i = 0; s1[i] != '\0'; i++)
+	m[i] = s1[i];
+
+for (j = 0; s2[j] != '\0' && j < n; i++, j++)
+	m[i] = s2[j];
+
+m[i] = '\0';
+
+return (m);
 }
