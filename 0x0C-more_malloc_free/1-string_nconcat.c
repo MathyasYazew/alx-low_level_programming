@@ -1,45 +1,57 @@
-#include <stdlib.h>
 #include "main.h"
-
+#include <stdlib.h>
 /**
- * *string_nconcat - concatenates n bytes of a string to another string
- * @s1: string to append to
- * @s2: string to concatenate from
- * @n: number of bytes from s2 to concatenate to s1
- *
- * Return: pointer to the resulting string
+ *_strlen- a function that return the length of length
+ *@str: char to check
+ *@col: int which string
+ *@n: number of string to return
+ *Return: number of string
  */
+unsigned int _strlen(char *str, unsigned int col, unsigned int n)
+{
+	unsigned int i = 0;
+
+	if (str != NULL)
+	{
+		while (str[i])
+		i++;
+		if (col == 2 && n > i)
+		return (i);
+		else if (col == 2 && n < i)
+		return (n);
+	}
+	else if (str == NULL)
+	return (1);
+	return (i);
+}
+/**
+ * string_nconcat- a function that concatenates two strings
+ *@s1: char to concat
+ *@s2: char to concat
+ *@n: s2 length to use to concat
+ *Return: pointer to new created space
+ */
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-  char *s;
-  unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+	unsigned int z = 0, i = 0;
+	char *ptr = malloc(_strlen(s1, 1, n) + _strlen(s2, 2, n) + 1);
 
-  while (s1 && s1[len1])
-    len1++;
-  while (s2 && s2[len2])
-    len2++;
-
-  if (n < len2)
-    s = malloc(sizeof(char) * (len1 + n + 1));
-  else
-    s = malloc(sizeof(char) * (len1 + len2 + 1));
-
-  if (!s)
-    return (NULL);
-
-  while (i < len1)
-    {
-      s[i] = s1[i];
-      i++;
-    }
-
-  while (n < len2 && i < (len1 + n))
-    s[i++] = s2[j++];
-
-  while (n >= len2 && i < (len1 + len2))
-    s[i++] = s2[j++];
-
-  s[i] = '\0';
-
-  return (s);
+	if (ptr == NULL)
+	{
+		return (NULL);
+	}
+	for (; z < _strlen(s1, 1, n); z++)
+	{
+		ptr[z] = s1[z];
+	}
+	for (; i < _strlen(s2, 2, n); i++)
+	{
+		if (s2 != NULL)
+		ptr[z + i] = s2[i];
+		else
+		ptr[z + i] = '\0';
+	}
+	ptr[z + i] = '\0';
+	return (ptr);
 }
