@@ -1,31 +1,43 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-/**
- * main - multiplies two positive numbers
- * @argc: n arguments
- * @argv: args
- * Return: int
- */
+
+int cnn(char **str)
+{
+ int i = 1;
+
+ 	while(str[i])
+	{
+		int z = 0;
+		while(str[i][z])
+		{
+			if(str[i][z] >= 47 && str[i][z] <= 57)
+			;
+			else
+			{
+			printf("%s\n", "Error");
+			exit(98);
+			}
+			z++;
+		}
+		i++;
+	}
+	return (0);
+
+}
+
 int main(int argc, char *argv[])
 {
-unsigned long mul;
-int i, j;
-	if (argc != 3)
-	{ printf("Error\n");
-	exit(98); }
-	for (i = 1; i < argc; i++)
+	int sum = 0;
+	if(argc != 3)
 	{
-		for (j = 0; argv[i][j] != '\0'; j++)
-		{
-			if (argv[i][j] > 57 || argv[i][j] < 48)
-			{  printf("Error\n");
-			exit(98); }
-		}
-
+		printf("\n%s\n", "Error");
+		exit(98);
 	}
-	mul = atol(argv[1]) *  atol(argv[2]);
-	printf("%lu\n", mul);
-return (0);
+	else if(cnn(argv) == 0)
+	{
+		sum = atoi(argv[1]) + atoi(argv[2]);
+		printf("%d\n", atoi(argv[1]) + atoi(argv[2]));	
+	}
+
+	return (sum);
 }
