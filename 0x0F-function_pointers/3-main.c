@@ -1,39 +1,41 @@
 #include "3-calc.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+
 /**
-* main - program that calculates 2 numbers
-*@argc: argument counter
-*@argv: argument vector that brings the values
-*Return: 0, 98 argc error, 99 on illegal operator, 100 div/mod by zero
-*/
+ * main - main function
+ * @argc: argument count
+ * @argv: string of arguments in array
+ * Return: 0
+ */
+
 int main(int argc, char *argv[])
 {
-	int result;
-	int (*op)(int, int);
+	int a, b;
+	int (*o)(int, int);
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-
-	op = get_op_func(argv[2]);
-
-	if (op == NULL)
+	if (argv[2][1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*argv[2] == '/' || *argv[2] == '%') && atoi(argv[3]) == '0')
+
+	o = get_op_func(argv[2]);
+	if (o == NULL)
 	{
 		printf("Error\n");
-		exit(100);
+		exit(99);
 	}
 
-	result = op(atoi(argv[1]), atoi(argv[3]));
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
 
-	printf("%d\n", result);
+	printf("%d\n", o(a, b));
+
 	return (0);
 }
