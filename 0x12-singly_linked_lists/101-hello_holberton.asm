@@ -1,21 +1,16 @@
-extern printf
-
-section .text
-   global main
-
+section.data
+	text db "Hello, Holberton", 10
+	.size equ $ - text
+section.text
+global main
 main:
-   push rbp
+	mov rdi, 1		;to the standard output
+	mov rsi, text		;message to peint
+	mov rdx, text.size	;size of text to print
+	mov rax, 1		;write
+	syscall
 
-   mov rdi,fmt
-   mov rsi,msg
-   mov rax,0
-   call printf
+	mov rax, 60
+	mov rdi, 0
+	syscall
 
-   pop rbp
-
-   mov rax,0
-   ret
-
-section .data
-   msg: db "Hello, Holberton", 0
-   fmt: db "%s", 10, 0

@@ -1,13 +1,13 @@
 #include <stdio.h>
-
-void __attribute__((constructor)) hare(void);
-
+#include "lists.h"
 /**
- * hare - Prints a string before the
- *        main function is executed.
- */
-void hare(void)
+ * liebre_tortuga - function that executes before main
+ **/
+void liebre_tortuga(void)
 {
-	printf("You're beat! and yet, you must allow,\n"
-	       "I bore my house upon my back!\n");
+	char *string1, *string2;
+
+	string1 = "You're beat! and yet, you must allow,\n";
+	string2 = "I bore my house upon my back!\n";
+	printf("%s%s", string1, string2);
 }
