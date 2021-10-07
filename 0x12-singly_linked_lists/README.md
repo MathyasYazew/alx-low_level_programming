@@ -1,1 +1,1 @@
-0x12-singly_linked_lists
+Project on singly_linked_lists
