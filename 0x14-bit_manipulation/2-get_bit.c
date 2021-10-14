@@ -1,21 +1,20 @@
-#include "main.h"
-
+#include "holberton.h"
 /**
- * get_bit - returns the value of a bit at a given index.
- * @n: number to check bits in
- * @index: index at which to check bit
- *
- * Return: value of the bit, or -1 if there is an error
+ * get_bit - return one bit
+ * @n: the number
+ * @index: the position to read the bit
+ * Description: return 1 bit
+ * section header: the header of this function is holberton.h
+ * Return: the value of the bit
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int divisor, check;
+	unsigned long int bit;
 
-	if (index > (sizeof(unsigned long int) * 8 - 1))
+	if (index > 64)
 		return (-1);
-	divisor = 1 << index;
-	check = n & divisor;
-	if (check == divisor)
-		return (1);
-	return (0);
+
+	bit = n >> index;
+
+	return (bit & 0x1);
 }
