@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "main.h"
 /**
  * set_bit - set a bit to 1
  * @n: the number
